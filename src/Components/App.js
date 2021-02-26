@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Signup from "./Singup";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
+import PrivateRoute from "./PricvateRoute";
 
 function App() {
   return (
