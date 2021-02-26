@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function login(email, password) {
-    return auth.SigninWithEmailAndPassword(email, password);
+    return auth.signInWithEmailAndPassword(email, password);
   }
 
   function signup(email, password) {
@@ -20,6 +20,15 @@ export function AuthProvider({ children }) {
   }
   function logout() {
     return auth.signOut();
+  }
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+  function updateEmail(email) {
+    return currentUser.updateEmail(email);
+  }
+  function updatePassword(password) {
+    return currentUser.updatePassword(password);
   }
 
   useEffect(() => {
@@ -35,6 +44,9 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
+    resetPassword,
+    updateEmail,
+    updatePassword,
   };
 
   return (
