@@ -30,6 +30,12 @@ function App() {
           <div className="w-100" style={{ maxWidth: "400px" }}>
             <Router>
               <AuthProvider>
+                <Button
+                  className=" w-100 text text-center mt-4"
+                  onClick={() => themeToggler()}
+                >
+                  Change Theme
+                </Button>
                 <Switch>
                   <PrivateRoute exact path="/" component={Dashboard} />
                   <PrivateRoute
@@ -42,12 +48,6 @@ function App() {
                 </Switch>
               </AuthProvider>
             </Router>
-            <Button
-              className=" w-100 text text-center mt-4"
-              onClick={() => themeToggler()}
-            >
-              Change Theme
-            </Button>
           </div>
         </Container>
       </StyledApp>

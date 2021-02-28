@@ -28,6 +28,6 @@ let User = mongoose.Schema({
   uid: String,
 });
 
-let Users = mongoose.model("user", User);
+// let Users = mongoose.model("user", User);
 
-module.exports = { Users };
+module.exports = mongoose.model("user", User);
