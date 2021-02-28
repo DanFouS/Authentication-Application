@@ -17,7 +17,7 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
   const StyledApp = styled.div`
-    background-color: ${(props) => props.theme.fontColor};
+    font-color: ${(props) => props.theme.fontColor};
   `;
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -42,12 +42,12 @@ function App() {
                 </Switch>
               </AuthProvider>
             </Router>
-        <Button
-          className=" w-100 text text-center mt-4"
-          onClick={() => themeToggler()}
-        >
-          Change Theme
-        </Button>
+            <Button
+              className=" w-100 text text-center mt-4"
+              onClick={() => themeToggler()}
+            >
+              Change Theme
+            </Button>
           </div>
         </Container>
       </StyledApp>

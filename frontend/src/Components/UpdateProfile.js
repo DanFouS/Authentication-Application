@@ -2,16 +2,45 @@ import React, { useRef, useState } from "react";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function UpdateProfile() {
   const nameRef = useRef();
+  const bioRef = useRef();
+  const phoneNumberRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser, updatePassword, updateEmail, updateName } = useAuth();
+  const { currentUser, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState("");
+
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+
+  function changeName(e) {
+    setName(e.target.value);
+  }
+  function changeBio(e) {
+    setBio(e.target.value);
+  }
+  function changePhoneNumber(e) {
+    setphoneNumber(e.target.value);
+  }
+
+  function updateInfo(e) {
+    e.preventDefault();
+    console.log("tiraaaaaaaaaaaaaaaaaa", { name, bio, phoneNumber });
+    axios.post("http://localhost:8000/createInfo", {
+      name: name,
+      bio: bio,
+      phoneNumber: phoneNumber,
+      uid: currentUser.uid,
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -22,9 +51,9 @@ export default function UpdateProfile() {
     setLoading(true);
     setError("");
 
-    if (nameRef.current.value !== currentUser.name) {
-      promises.push(updateName(nameRef.current.value));
-    }
+    // if (nameRef.current.value) {
+    //   promises.push(updateName(nameRef.current.value));
+    // }
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
@@ -52,15 +81,38 @@ export default function UpdateProfile() {
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger"> {error} </Alert>}
+
           <Form onSubmit={handleSubmit}>
             <Form.Group id="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
+                onChange={changeName}
                 type="name"
                 ref={nameRef}
-                required
                 defaultValue={currentUser.name}
                 placeholder="Your Name"
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group id="bio">
+              <Form.Label>bio</Form.Label>
+              <Form.Control
+                onChange={changeBio}
+                type="bio"
+                ref={bioRef}
+                defaultValue={currentUser.bio}
+                placeholder="Add a bio"
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group id="phoneNumber">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                onChange={changePhoneNumber}
+                type="phoneNumber"
+                ref={phoneNumberRef}
+                defaultValue={currentUser.phoneNumber}
+                placeholder="+44 444 444 444"
               ></Form.Control>
             </Form.Group>
 
@@ -91,8 +143,12 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep it the same"
               ></Form.Control>
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              {" "}
+            <Button
+              disabled={loading}
+              className="w-100"
+              type="submit"
+              onClick={updateInfo}
+            >
               Update
             </Button>
           </Form>

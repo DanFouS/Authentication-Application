@@ -29,6 +29,12 @@ export default function Dashboard() {
           <strong>Name: </strong>
           {currentUser.name}
           <br />
+          <strong>Bio: </strong>
+          {currentUser.name}
+          <br />
+          <strong>Phone Number: </strong>
+          {currentUser.name}
+          <br />
           <strong>Email: </strong>
           {currentUser.email}
         </Card.Body>
