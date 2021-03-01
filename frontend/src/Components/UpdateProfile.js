@@ -31,21 +31,21 @@ export default function UpdateProfile() {
     setphoneNumber(e.target.value);
   }
 
-  // axios
-  //   .get(`http://localhost:8000/User/user/` ${this.state.uid})
-  //   .then((res) => {
-  //     console.log("username!!!!!!!!!!!!!", res.data);
-  //     this.setState({
-  //       userName: res.data.userName,
-  //       picture: res.data.profilePic,
-  //       phone: res.data.phone,
-  //       socialMedia: res.data.socialMedia,
-  //       type: res.data.type,
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
+    // axios
+    // .get(`http://localhost:8000/User/user/` ${this.state.uid})
+    //   .then((res) => {
+    //     console.log("username!!!!!!!!!!!!!", res.data);
+    //     this.setState({
+    //       userName: res.data.userName,
+    //       picture: res.data.profilePic,
+    //       phone: res.data.phone,
+    //       socialMedia: res.data.socialMedia,
+    //       type: res.data.type,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
 
   function updateInfo(e) {
     e.preventDefault();
