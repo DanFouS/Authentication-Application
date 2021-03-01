@@ -26,6 +26,7 @@ let User = mongoose.Schema({
   bio: String,
   phoneNumber: Number,
   uid: String,
+  
 });
 
 // let Users = mongoose.model("user", User);

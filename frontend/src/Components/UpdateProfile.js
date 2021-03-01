@@ -14,6 +14,8 @@ export default function UpdateProfile() {
   const { currentUser, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState("");
 
+  const [image, setImage] = useState("");
+
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
@@ -31,21 +33,21 @@ export default function UpdateProfile() {
     setphoneNumber(e.target.value);
   }
 
-    // axios
-    // .get(`http://localhost:8000/User/user/` ${this.state.uid})
-    //   .then((res) => {
-    //     console.log("username!!!!!!!!!!!!!", res.data);
-    //     this.setState({
-    //       userName: res.data.userName,
-    //       picture: res.data.profilePic,
-    //       phone: res.data.phone,
-    //       socialMedia: res.data.socialMedia,
-    //       type: res.data.type,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+  // axios
+  // .get(`http://localhost:8000/User/user/` ${this.state.uid})
+  //   .then((res) => {
+  //     console.log("username!!!!!!!!!!!!!", res.data);
+  //     this.setState({
+  //       userName: res.data.userName,
+  //       picture: res.data.profilePic,
+  //       phone: res.data.phone,
+  //       socialMedia: res.data.socialMedia,
+  //       type: res.data.type,
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
 
   function updateInfo(e) {
     e.preventDefault();
@@ -67,10 +69,6 @@ export default function UpdateProfile() {
     setLoading(true);
     setError("");
 
-    // if (nameRef.current.value) {
-    //   promises.push(updateName(nameRef.current.value));
-    // }
-
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
     }
@@ -91,12 +89,40 @@ export default function UpdateProfile() {
       });
   }
 
+  const uploadImage = (e) => {
+    // console.log(files[0]);
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append("upload_preset", "safasafa");
+    formData.append("file", files);
+    setLoading(true);
+    axios
+      .post("https://api.cloudinary.com/v1_1/dvfjc4vsu/image/upload", formData)
+      .then((res) => setImage(res.data.secure_url))
+      .then(setLoading(false))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger"> {error} </Alert>}
+
+          <div>
+            <input name="file" type="file" onChange={uploadImage} />
+            {loading ? (
+              <h1>Loading</h1>
+            ) : (
+              <img
+                className="setting-image center mb-4  "
+                height="150"
+                width="150"
+                src={image}
+              />
+            )}
+          </div>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group id="name">
