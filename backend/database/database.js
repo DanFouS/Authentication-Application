@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
 
-mongoose
-  .connect("mongodb+srv://danfous:danfous321@cluster0.qr5yu.mongodb.net/test", {
+mongoose.connect(
+  "mongodb+srv://danfous:danfous321@cluster0.qr5yu.mongodb.net/test",
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("mongodb is connected");
-  });
+  }
+);
 
 mongoose.set("useFindAndModify", false);
 
 var db = mongoose.connection;
 
 db.once("open", () => {
-  console.log("MongoDB is Open");
+  console.log("MongoDB is connected");
 });
 
 db.on("error", () => {
@@ -26,7 +25,7 @@ let User = mongoose.Schema({
   bio: String,
   phoneNumber: Number,
   uid: String,
-  
+  image: String,
 });
 
 // let Users = mongoose.model("user", User);

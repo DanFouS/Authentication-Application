@@ -12,39 +12,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.post("/createInfo", (req, res) => {
-//   console.log("detailsssssssssssssssss", req.body);
-//   const details = {
-//     name: req.body.name,
-//     bio: req.body.bio,
-//     phoneNumber: req.body.phoneNumber,
-//     uid: req.body.uid,
-//   };
-
-//   const newUser = async () => {
-//     new Users(details);
-//     newUser.save();
-//     await res.json({
-//       msg: "  user has been successfully added to our database ",
-//     });
-//   };
-// });
-
 app.post("/createInfo", async (req, res) => {
   try {
-    console.log("detailsssssssssssssssss", req.body);
-    const details = {
-      name: req.body.name,
-      bio: req.body.bio,
-      phoneNumber: req.body.phoneNumber,
-      uid: req.body.uid,
-    };
+    let user = await Users.findOneAndUpdate(
+      { uid: req.body.uid },
+      {
+        name: req.body.name,
+        bio: req.body.bio,
+        phoneNumber: req.body.phoneNumber,
+        uid: req.body.uid,
+        image: req.body.image,
+      }
+    );
+    if (!user) {
+      console.log("detailsssssssssssssssss", req.body);
+      const details = {
+        name: req.body.name,
+        bio: req.body.bio,
+        phoneNumber: req.body.phoneNumber,
+        uid: req.body.uid,
+        image: req.body.image,
+      };
 
-    const newUser = new Users(details);
-    await newUser.save();
-    res.json({
-      msg: "  user has been successfully added to our database ",
-    });
+      const newUser = new Users(details);
+      await newUser.save();
+      res.json({
+        msg: "  user has been successfully added to our database ",
+      });
+    }
   } catch (err) {
     console.log(err);
   }

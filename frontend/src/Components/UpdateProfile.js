@@ -33,22 +33,6 @@ export default function UpdateProfile() {
     setphoneNumber(e.target.value);
   }
 
-  // axios
-  // .get(`http://localhost:8000/User/user/` ${this.state.uid})
-  //   .then((res) => {
-  //     console.log("username!!!!!!!!!!!!!", res.data);
-  //     this.setState({
-  //       userName: res.data.userName,
-  //       picture: res.data.profilePic,
-  //       phone: res.data.phone,
-  //       socialMedia: res.data.socialMedia,
-  //       type: res.data.type,
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-
   function updateInfo(e) {
     e.preventDefault();
     console.log("tiraaaaaaaaaaaaaaaaaa", { name, bio, phoneNumber });
@@ -57,7 +41,9 @@ export default function UpdateProfile() {
       bio: bio,
       phoneNumber: phoneNumber,
       uid: currentUser.uid,
+      image: image,
     });
+    history.push("/");
   }
 
   function handleSubmit(e) {
@@ -98,7 +84,10 @@ export default function UpdateProfile() {
     setLoading(true);
     axios
       .post("https://api.cloudinary.com/v1_1/dvfjc4vsu/image/upload", formData)
-      .then((res) => setImage(res.data.secure_url))
+      .then((res) => {
+        setImage(res.data.secure_url);
+        console.log("image", image);
+      })
       .then(setLoading(false))
       .catch((err) => console.log(err));
   };
@@ -116,6 +105,7 @@ export default function UpdateProfile() {
               <h1>Loading</h1>
             ) : (
               <img
+                alt=""
                 className="setting-image center mb-4  "
                 height="150"
                 width="150"

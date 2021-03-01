@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useHistory();
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/user/${currentUser.uid}`)
+      .then((res) => {
+        console.log("JUST WORK", res.data);
+
+        setName(res.data.name);
+        setBio(res.data.bio);
+        setphoneNumber(res.data.phoneNumber);
+        setImage(res.data.image);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
 
   async function handleLogout() {
     setError("");
@@ -27,14 +48,21 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Profile</h2>
 
           {error && <Alert variant="danger"> {error} </Alert>}
+          <Card.Img
+            alt=""
+            className="setting-image center mb-4  "
+            height="150"
+            width="150"
+            src={image}
+          />
           <strong>Name: </strong>
-          {currentUser.name}
+          {name}
           <br />
           <strong>Bio: </strong>
-          {currentUser.name}
+          {bio}
           <br />
           <strong>Phone Number: </strong>
-          {currentUser.name}
+          {phoneNumber}
           <br />
           <strong>Email: </strong>
           {currentUser.email}
