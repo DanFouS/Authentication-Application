@@ -2,6 +2,11 @@ import React, { useRef, useState } from "react";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
+
+const responseGoogle = (res) => {
+  console.log(res);
+};
 
 export default function Login() {
   const emailRef = useRef();
@@ -13,10 +18,6 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-// lena bsh naamél axios .get aaaaa
-
-
-
 
     try {
       setError("");
@@ -47,6 +48,13 @@ export default function Login() {
                 ref={passwordRef}
                 required
               ></Form.Control>
+              <div className="w-100 text text-center mt-3">
+                <GoogleLogin
+                  clientId="136826018616-72oh0ipsqgdq46tqhb3t7jlu0b6bhpb5.apps.googleusercontent.com"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                />
+              </div>
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Log In
