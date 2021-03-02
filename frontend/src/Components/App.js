@@ -11,9 +11,6 @@ import UpdateProfile from "./UpdateProfile";
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./theme";
 
-
-
-
 function App() {
   const [theme, setTheme] = useState("light");
   const themeToggler = () => {
