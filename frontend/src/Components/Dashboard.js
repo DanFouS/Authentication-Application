@@ -3,7 +3,7 @@ import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-
+import "./Dashboard.css";
 export default function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
@@ -48,13 +48,16 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Profile</h2>
 
           {error && <Alert variant="danger"> {error} </Alert>}
-          <Card.Img
-            alt=""
-            className="setting-image center mb-4  "
-            height="150"
-            width="150"
-            src={image}
-          />
+          <div className="test">
+            <Card.Img
+              alt=""
+              className="setting-image center mb-4  "
+              height="300"
+              width="300"
+              src={image}
+            />
+          </div>
+
           <strong>Name: </strong>
           {name}
           <br />

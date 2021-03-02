@@ -1,0 +1,19 @@
+.test {
+  /* border-radius: 50%; */
+  /* display: flex; */
+  text-align: center;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+}
+/* .test {
+  border-radius: 50%;
+  color: #212529;
+  display: flex;
+  gap: normal;
+  line-height: 24px;
+  margin: 0px 0px 24px;
+  text-align: center;
+} */

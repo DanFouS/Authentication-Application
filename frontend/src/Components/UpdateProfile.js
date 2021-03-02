@@ -3,6 +3,7 @@ import { Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import "./UpdateProfile.css";
 
 export default function UpdateProfile() {
   const nameRef = useRef();
@@ -100,13 +101,19 @@ export default function UpdateProfile() {
           {error && <Alert variant="danger"> {error} </Alert>}
 
           <div>
-            <input name="file" type="file" onChange={uploadImage} />
+            <div
+              id="ntba"
+              className="file btn btn-lg btn-primary w-100 text text-center mt-2 mb-4"
+            >
+              update a profile picture
+              <input name="file" type="file" onChange={uploadImage} />
+            </div>
             {loading ? (
               <h1>Loading</h1>
             ) : (
               <img
                 alt=""
-                className="setting-image center mb-4  "
+                className="w-100 text text-center mt-2"
                 height="150"
                 width="150"
                 src={image}
