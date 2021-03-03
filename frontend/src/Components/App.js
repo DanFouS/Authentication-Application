@@ -47,7 +47,7 @@ function App() {
                   <Route path="/forgot-password" component={ForgotPassword} />
                 </Switch>
                 <Button
-                  className="btn btn-secondary"
+                  className="btn btn-secondary w-100"
                   onClick={() => themeToggler()}
                 >
                   Change theme{" "}

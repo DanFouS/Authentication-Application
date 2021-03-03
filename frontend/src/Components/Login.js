@@ -8,6 +8,9 @@ import {
   googleProvider,
 } from "./service/authMethods";
 import socialMedia from "./service/auth";
+import { FaGithub } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 // import { GoogleLogin } from "react-google-login";
 
 // import firebase from "firebase";
@@ -75,24 +78,24 @@ export default function Login() {
                 <div className="w-100 text text-center mt-3 ">
                   <Button
                     disabled={loading}
-                    className="w-10 mb-3  mt-1"
+                    className="btn btn-secondary w-100 mb-3  mt-1"
                     onClick={() => HandleOnClick(facebookProvider)}
                   >
-                    Facebook
+                    <FaFacebook /> Facebook
                   </Button>
                   <Button
                     disabled={loading}
-                    className="w-10 mb-3 mt-1"
+                    className="btn btn-secondary w-100 mb-3 mt-1"
                     onClick={() => HandleOnClick(googleProvider)}
                   >
-                    Google
+                    <FaGoogle /> Google
                   </Button>
                   <Button
                     disabled={loading}
-                    className="w-10 mb-3  mt-1"
+                    className="btn btn-secondary w-100 mb-3  mt-1"
                     onClick={() => HandleOnClick(githubProvider)}
                   >
-                    Github
+                    <FaGithub /> Github
                   </Button>
                 </div>
               </div>
