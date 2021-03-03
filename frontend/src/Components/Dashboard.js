@@ -40,6 +40,9 @@ export default function Dashboard() {
   }
   return (
     <>
+      {/* <Link to="/gallery" className="btn btn-primary w-100 mt-3">
+        Gallery
+      </Link> */}
       <Card>
         <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
           Update Profile

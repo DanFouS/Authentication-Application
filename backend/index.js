@@ -32,17 +32,7 @@ app.post("/createInfo", async (req, res) => {
       obj["image"] = req.body.image;
     }
 
-    let user = await Users.findOneAndUpdate(
-      { uid: req.body.uid },
-      obj
-      // {
-      //   name: req.body.name,
-      //   bio: req.body.bio,
-      //   phoneNumber: req.body.phoneNumber,
-      //   uid: req.body.uid,
-      //   image: req.body.image,
-      // }
-    );
+    let user = await Users.findOneAndUpdate({ uid: req.body.uid }, obj);
     if (!user) {
       console.log("detailsssssssssssssssss", req.body);
       const details = {
@@ -68,6 +58,15 @@ app.get("/user/:uid", async (req, res) => {
   try {
     let user = await Users.findOne({ uid: req.params.uid });
     return res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.delete("/user/:uid", async (req, res) => {
+  try {
+    let user = await Users.deleteOne({ uid: req.params.uid });
+    return res.send("User Deleted", user);
   } catch (err) {
     console.log(err);
   }

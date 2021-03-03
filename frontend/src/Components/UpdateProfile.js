@@ -46,6 +46,12 @@ export default function UpdateProfile() {
     });
     history.push("/");
   }
+  function deleteProfile(e) {
+    e.preventDefault();
+    axios.delete("http://localhost:8000/createInfo");
+    // firebase.auth().currentUser.uid;
+    history.push("/login");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -97,15 +103,15 @@ export default function UpdateProfile() {
     <>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Update Profile</h2>
+          <h2 className="text-center ">Update Profile</h2>
           {error && <Alert variant="danger"> {error} </Alert>}
 
           <div>
             <div
               id="ntba"
-              className="file btn btn-lg btn-primary w-100 text text-center mt-2 mb-4"
+              className="file btn btn-primary w-100 text text-center "
             >
-              update a profile picture
+              <div id="brr">update profile picture</div>
               <input name="file" type="file" onChange={uploadImage} />
             </div>
             {loading ? (
@@ -126,7 +132,7 @@ export default function UpdateProfile() {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 onChange={changeName}
-                type="name"
+                type="text"
                 ref={nameRef}
                 defaultValue={currentUser.name}
                 placeholder="Your Name"
@@ -137,7 +143,7 @@ export default function UpdateProfile() {
               <Form.Label>bio</Form.Label>
               <Form.Control
                 onChange={changeBio}
-                type="bio"
+                type="text"
                 ref={bioRef}
                 defaultValue={currentUser.bio}
                 placeholder="Add a bio"
@@ -148,7 +154,7 @@ export default function UpdateProfile() {
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
                 onChange={changePhoneNumber}
-                type="phoneNumber"
+                type="phone"
                 ref={phoneNumberRef}
                 defaultValue={currentUser.phoneNumber}
                 placeholder="+44 444 444 444"
@@ -189,6 +195,14 @@ export default function UpdateProfile() {
               onClick={updateInfo}
             >
               Update
+            </Button>
+            <Button
+              disabled={loading}
+              className="btn btn-secondary w-100 mt-2"
+              type="submit"
+              onClick={deleteProfile}
+            >
+              Delete Account
             </Button>
           </Form>
         </Card.Body>

@@ -26,3 +26,14 @@ img {
   right: 0;
   top: 0;
 }
+input[type="file"] {
+  opacity: 0;
+}
+#brr {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -45,6 +45,8 @@ export default function Singup() {
                 type="password"
                 ref={passwordRef}
                 required
+                maxLength="15"
+                minLength="10"
               ></Form.Control>
             </Form.Group>
             <Form.Group id="password-confirm">
@@ -53,6 +55,8 @@ export default function Singup() {
                 type="password"
                 ref={passwordConfirmRef}
                 required
+                maxLength="15"
+                minLength="10"
               ></Form.Control>
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">

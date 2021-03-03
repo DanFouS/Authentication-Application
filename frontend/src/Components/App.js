@@ -10,6 +10,7 @@ import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./theme";
+// import Gallery from "./Gallery/Gallery";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -32,7 +33,7 @@ function App() {
             <Router>
               <AuthProvider>
                 <Button
-                  className=" w-100 text text-center mt-4"
+                  className=" w-100 btn btn-secondary text text-center mt-4"
                   onClick={() => themeToggler()}
                 >
                   Change Theme
@@ -43,6 +44,8 @@ function App() {
                     path="/update-profile"
                     component={UpdateProfile}
                   />
+                  {/* <Route path="/gallery" component={Gallery} /> */}
+
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
                   <Route path="/forgot-password" component={ForgotPassword} />
