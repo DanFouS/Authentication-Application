@@ -23,21 +23,15 @@ function App() {
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <GlobalStyles />
+    <GlobalStyles />
       <StyledApp>
-        <Container
-          className="d-flex align-items-center justify-content-center"
-          style={{ minHeight: "100vh" }}
-        >
-          <div className="w-100" style={{ maxWidth: "400px" }}>
-            <Router>
-              <AuthProvider>
-                <Button
-                  className=" w-100 btn btn-secondary text text-center mt-4"
-                  onClick={() => themeToggler()}
-                >
-                  Change Theme
-                </Button>
+        <AuthProvider>
+          <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{ minHeight: "100vh" }}
+          >
+            <div className="w-100" style={{ maxWidth: "400px" }}>
+              <Router>
                 <Switch>
                   <PrivateRoute exact path="/" component={Dashboard} />
                   <PrivateRoute
@@ -50,10 +44,16 @@ function App() {
                   <Route path="/login" component={Login} />
                   <Route path="/forgot-password" component={ForgotPassword} />
                 </Switch>
-              </AuthProvider>
-            </Router>
-          </div>
-        </Container>
+              </Router>
+              <Button
+                className=" w-100 btn btn-secondary text text-center mt-4"
+                onClick={() => themeToggler()}
+              >
+                Change Theme
+              </Button>
+            </div>
+          </Container>
+        </AuthProvider>
       </StyledApp>
     </ThemeProvider>
   );

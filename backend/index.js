@@ -63,7 +63,7 @@ app.get("/user/:uid", async (req, res) => {
   }
 });
 
-app.delete("/user/:uid", async (req, res) => {
+app.delete("/deleteProfile/:uid", async (req, res) => {
   try {
     let user = await Users.deleteOne({ uid: req.params.uid });
     return res.send("User Deleted", user);

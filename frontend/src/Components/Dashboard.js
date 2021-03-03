@@ -74,7 +74,7 @@ export default function Dashboard() {
           {currentUser.email}
         </Card.Body>
       </Card>
-      <div className="w-100 text text-center mt-2">
+      <div id="eldivo" className="w-100 text text-center mt-2 ">
         <Button variant="link" onClick={handleLogout}>
           Logout
         </Button>

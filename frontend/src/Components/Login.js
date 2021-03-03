@@ -2,11 +2,19 @@ import React, { useRef, useState } from "react";
 import { Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../Context/authContext";
 import { Link, useHistory } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
+import {
+  facebookProvider,
+  githubProvider,
+  googleProvider,
+} from "./service/authMethods";
+import socialMedia from "./service/auth";
+// import { GoogleLogin } from "react-google-login";
 
-const responseGoogle = (res) => {
-  console.log(res);
-};
+// import firebase from "firebase";
+
+// const responseGoogle = (res) => {
+//   console.log(res);
+// };
 
 export default function Login() {
   const emailRef = useRef();
@@ -29,6 +37,11 @@ export default function Login() {
     }
     setLoading(false);
   }
+  const HandleOnClick = async (provider) => {
+    const res = await socialMedia(provider);
+    history.push("/");
+    console.log(res);
+  };
 
   return (
     <>
@@ -56,14 +69,39 @@ export default function Login() {
                 maxLength="15"
                 minLength="10"
               ></Form.Control>
-
-              <div className="w-100 text text-center mt-3">
+              <div>
+                <h6 className="text-center mt-3">Login With Social Media :</h6>
+                <div className="w-100 text text-center mt-3 ">
+                  <Button
+                    disabled={loading}
+                    className="w-10 mb-3  mt-1"
+                    onClick={() => HandleOnClick(facebookProvider)}
+                  >
+                    Facebook
+                  </Button>
+                  <Button
+                    disabled={loading}
+                    className="w-10 mb-3 mt-1"
+                    onClick={() => HandleOnClick(googleProvider)}
+                  >
+                    Google
+                  </Button>
+                  <Button
+                    disabled={loading}
+                    className="w-10 mb-3  mt-1"
+                    onClick={() => HandleOnClick(githubProvider)}
+                  >
+                    Github
+                  </Button>
+                </div>
+              </div>
+              {/* <div className="w-100 text text-center mt-3">
                 <GoogleLogin
                   clientId="136826018616-72oh0ipsqgdq46tqhb3t7jlu0b6bhpb5.apps.googleusercontent.com"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                 />
-              </div>
+              </div> */}
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Log In

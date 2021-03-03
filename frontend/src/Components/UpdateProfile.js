@@ -46,10 +46,10 @@ export default function UpdateProfile() {
     });
     history.push("/");
   }
+
   function deleteProfile(e) {
     e.preventDefault();
-    axios.delete("http://localhost:8000/createInfo");
-    // firebase.auth().currentUser.uid;
+    axios.delete("http://localhost:8000/deleteProfile/:uid");
     history.push("/login");
   }
 
