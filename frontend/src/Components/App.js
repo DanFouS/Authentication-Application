@@ -12,22 +12,24 @@ import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./theme";
 // import Gallery from "./Gallery/Gallery";
 
+const StyledApp = styled.div`
+  color: ${(props) => props.theme.fontColor};
+`;
+
 function App() {
   const [theme, setTheme] = useState("light");
+
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
-  const StyledApp = styled.div`
-    font-color: ${(props) => props.theme.fontColor};
-  `;
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-    <GlobalStyles />
+      <GlobalStyles />
       <StyledApp>
         <AuthProvider>
           <Container
-            className="d-flex align-items-center justify-content-center"
+            className=" d-flex align-items-center justify-content-center"
             style={{ minHeight: "100vh" }}
           >
             <div className="w-100" style={{ maxWidth: "400px" }}>
@@ -44,13 +46,13 @@ function App() {
                   <Route path="/login" component={Login} />
                   <Route path="/forgot-password" component={ForgotPassword} />
                 </Switch>
+                <Button
+                  className="btn btn-secondary"
+                  onClick={() => themeToggler()}
+                >
+                  Change theme{" "}
+                </Button>
               </Router>
-              <Button
-                className=" w-100 btn btn-secondary text text-center mt-4"
-                onClick={() => themeToggler()}
-              >
-                Change Theme
-              </Button>
             </div>
           </Container>
         </AuthProvider>

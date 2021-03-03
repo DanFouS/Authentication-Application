@@ -12,4 +12,8 @@ export const GlobalStyles = createGlobalStyle`
     body{
         background-color: ${(props) => props.theme.body}
     }
+
+    card-body {
+      background-color: ${(props) => props.theme.body}
+    }
 `;
