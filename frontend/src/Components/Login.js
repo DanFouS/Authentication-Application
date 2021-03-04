@@ -11,13 +11,6 @@ import socialMedia from "./service/auth";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-// import { GoogleLogin } from "react-google-login";
-
-// import firebase from "firebase";
-
-// const responseGoogle = (res) => {
-//   console.log(res);
-// };
 
 export default function Login() {
   const emailRef = useRef();
@@ -49,7 +42,6 @@ export default function Login() {
   return (
     <>
       <Card>
-        {/* <Card.Body className="text-white bg-dark"> */}
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger"> {error} </Alert>}
@@ -99,13 +91,6 @@ export default function Login() {
                   </Button>
                 </div>
               </div>
-              {/* <div className="w-100 text text-center mt-3">
-                <GoogleLogin
-                  clientId="136826018616-72oh0ipsqgdq46tqhb3t7jlu0b6bhpb5.apps.googleusercontent.com"
-                  onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
-                />
-              </div> */}
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Log In

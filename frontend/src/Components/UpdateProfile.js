@@ -83,7 +83,6 @@ export default function UpdateProfile() {
   }
 
   const uploadImage = (e) => {
-    // console.log(files[0]);
     const files = e.target.files[0];
     const formData = new FormData();
     formData.append("upload_preset", "safasafa");
@@ -154,7 +153,7 @@ export default function UpdateProfile() {
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
                 onChange={changePhoneNumber}
-                type="phone"
+                type="number"
                 ref={phoneNumberRef}
                 defaultValue={currentUser.phoneNumber}
                 placeholder="+44 444 444 444"
