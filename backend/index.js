@@ -14,25 +14,25 @@ app.use(cors());
 
 app.post("/createInfo", async (req, res) => {
   try {
-    var obj = {};
+    // var {name, } = {};
 
-    if (req.body.name) {
-      obj["name"] = req.body.name;
-    }
+    // if (req.body.name) {
+    //   obj.name = req.body.name;
+    // }
 
-    if (req.body.bio) {
-      obj["bio"] = req.body.bio;
-    }
+    // if (req.body.bio) {
+    //   obj["bio"] = req.body.bio;
+    // }
 
-    if (req.body.phoneNumber) {
-      obj["phoneNumber"] = req.body.phoneNumber;
-    }
+    // if (req.body.phoneNumber) {
+    //   obj["phoneNumber"] = req.body.phoneNumber;
+    // }
 
-    if (req.body.image) {
-      obj["image"] = req.body.image;
-    }
+    // if (req.body.image) {
+    //   obj["image"] = req.body.image;
+    // }
 
-    let user = await Users.findOneAndUpdate({ uid: req.body.uid }, obj);
+    let user = await Users.findOneAndUpdate({ uid: req.body.uid }, req.body);
     if (!user) {
       console.log("detailsssssssssssssssss", req.body);
       const details = {

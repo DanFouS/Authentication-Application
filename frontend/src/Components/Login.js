@@ -11,7 +11,7 @@ import socialMedia from "./service/auth";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-
+ 
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -25,7 +25,7 @@ export default function Login() {
 
     try {
       setError("");
-      setLoading(true);
+        setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       history.push("/");
     } catch {
